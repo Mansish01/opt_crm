@@ -22,3 +22,24 @@
 			prose-th:relative;
 	}
 }
+
+
+/* Hide the entire Getting Started sidebar */
+.fixed.z-50.right-0.w-80.h-\[calc\(100\%_-_80px\)\] {
+    display: none !important;
+}
+
+/* Alternative approach using more specific targeting */
+div[class*="fixed"][class*="z-50"][class*="right-0"][class*="w-80"]:has(div:contains("Getting started")) {
+    display: none !important;
+}
+
+/* If the above doesn't work due to Tailwind compilation, try this more generic approach */
+[class*="fixed"][class*="right-0"][class*="w-80"]:has([class*="text-base"]:contains("Getting started")) {
+    display: none !important;
+}
+
+/* Most reliable approach - target by text content if other selectors don't work */
+div:has(> div > div:contains("Getting started")) {
+    display: none !important;
+}

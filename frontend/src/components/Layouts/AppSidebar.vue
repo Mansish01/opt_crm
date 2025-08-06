@@ -71,54 +71,6 @@
         </Section>
       </div>
     </div>
-    <div class="m-2 flex flex-col gap-1">
-      <div class="flex flex-col gap-2 mb-1">
-        <SignupBanner
-          v-if="isDemoSite"
-          :isSidebarCollapsed="isSidebarCollapsed"
-          :afterSignup="() => capture('signup_from_demo_site')"
-        />
-        <TrialBanner
-          v-if="isFCSite"
-          :isSidebarCollapsed="isSidebarCollapsed"
-          :afterUpgrade="() => capture('upgrade_plan_from_trial_banner')"
-        />
-        <GettingStartedBanner
-          v-if="!isOnboardingStepsCompleted"
-          :isSidebarCollapsed="isSidebarCollapsed"
-        />
-      </div>
-      <SidebarLink
-        v-if="isOnboardingStepsCompleted"
-        :label="__('Help')"
-        :isCollapsed="isSidebarCollapsed"
-        @click="
-          () => {
-            showHelpModal = minimize ? true : !showHelpModal
-            minimize = !showHelpModal
-          }
-        "
-      >
-        <template #icon>
-          <HelpIcon class="h-4 w-4" />
-        </template>
-      </SidebarLink>
-      <SidebarLink
-        :label="isSidebarCollapsed ? __('Expand') : __('Collapse')"
-        :isCollapsed="isSidebarCollapsed"
-        @click="isSidebarCollapsed = !isSidebarCollapsed"
-        class=""
-      >
-        <template #icon>
-          <span class="grid h-4 w-4 flex-shrink-0 place-items-center">
-            <CollapseSidebar
-              class="h-4 w-4 text-ink-gray-7 duration-300 ease-in-out"
-              :class="{ '[transform:rotateY(180deg)]': isSidebarCollapsed }"
-            />
-          </span>
-        </template>
-      </SidebarLink>
-    </div>
     <Notifications />
     <Settings />
     <HelpModal
